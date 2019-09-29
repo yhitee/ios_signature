@@ -1,0 +1,110 @@
+{% extends 'pc/basetemplate.html' %}
+{% load static %}
+{% block title %}注册{% endblock %}
+{% block style %}
+<link href="{% static 'css/pc/login.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+<body style="background: #bbbbbb">
+<div class="login-box" style="height: 800px">
+    <div class="login-box-bottom">
+        <div class="login-box-bottom-left">
+            <div class="login-box-logo">
+                <img width="100%" src="{% static 'images/pc/001.png' %}" onclick="window.location.href='{% url 'index' %}'">
+            </div>
+            <img width="100%" src="{% static 'images/pc/006.png' %}">
+        </div>
+
+        <div class="login-box-bottom-right">
+            <h2 class="text-center user-login">用户注册</h2>
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="mobile">
+
+                    <form class="js-ajax-form" action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group form-group-ou">
+                            {{ register_form.username.label_tag }}
+                            {{ register_form.username }}
+                        </div>
+                        <div class="form-group form-group-ou">
+                            {{ register_form.password1.label_tag }}
+                            {{ register_form.password1 }}
+                        </div>
+                        <div class="form-group form-group-ou">
+                            {{ register_form.password2.label_tag }}
+                            {{ register_form.password2 }}
+                        </div>
+                        <div class="form-group form-group-ou">
+                            {{ register_form.email.label_tag }}
+                            {{ register_form.email }}
+                        </div>
+                        <div class="form-group form-group-ou">
+                            {{ register_form.captcha.label_tag }}
+                            {{ register_form.captcha }}
+                        </div>
+                        <div class="form-group">
+                            <p class="form-group-p">
+                                “注册” 即表示您同意并愿意遵守 <a href="">服务协议</a>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" id = 'sub' type="submit" data-wait="1500" style="width:418px; height:56px; background:#15EBBF;border-radius:10px;border: none;font-size: 22px;">注册
+                            </button>
+                        </div>
+
+                        <div class="form-group" style="">
+                            <p>
+                                已有账号? <a style="color:#3BCDAE;" href="{% url 'login' %}">去登录</a>
+                            </p>
+
+                        </div>
+                        {% if register_form.captcha.errors %}
+                            <div class="alert alert-warning" style="width: 197px;height: 50px">{{ register_form.captcha.errors }}</div>
+                        {% elif message %}
+                            <div class="alert alert-warning" style="width: 197px;height: 50px">{{ message }}</div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/pc/jquery.min.js' %}"></script>
+<script src="{% static 'js/pc/bootstrap.min.js' %}"></script>
+<script>
+    /*
+        $(function () {
+        $("#sub").click(function(){
+            if(!$(this).hasClass("disabled")){
+                $("#sub").addClass("disabled");
+                var countDownTime = 3;
+                i = setInterval(function () {
+                    //如果返回值不对 就继续下载秒数倒数
+                    if (countDownTime > 0) {
+                        $("#sub").html("请在"+countDownTime+"秒后重试");
+                        countDownTime--;
+                    } else {
+                        //如果下载秒数已经结束就显示下载失败
+                        clearInterval(i);
+                        $("#sub").removeClass("disabled")
+                    }
+                }, 1000);
+                $("#js-ajax-form").submit();
+            }
+        });
+    });
+    */
+
+    // 验证码点击刷新
+    $('.captcha').click(function () {
+    $.getJSON("/captcha/refresh/", function (result) {
+        $('.captcha').attr('src', result['image_url']);
+        $('#id_captcha_0').val(result['key'])
+        });
+    });
+</script>
+</body>
+{% endblock %}

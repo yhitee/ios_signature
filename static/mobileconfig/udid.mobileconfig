@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <dict>
+            <key>URL</key>
+            <string>http://192.168.200.25:8000/udid/receive/</string>
+            <key>DeviceAttributes</key>
+            <array>
+                <string>UDID</string>
+                <string>IMEI</string>
+                <string>ICCID</string>
+                <string>VERSION</string>
+                <string>PRODUCT</string>
+            </array>
+        </dict>
+        <key>Challenge</key>
+        <string>optional challenge</string>
+        <key>PayloadOrganization</key>
+        <string>授权安装APP进入下一步</string>  =
+        <key>PayloadDisplayName</key>
+        <string>获取UDID--【点击安装】</string> =
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadUUID</key>
+        <string>3C4DC7D2-E475-3375-489C-0FVASDQWECCAS001BDGETUDID</string> =
+        <key>PayloadIdentifier</key>
+        <string>xxxxx.com.profile-service</string>
+        <key>PayloadDescription</key>
+        <string>配置文件仅用于获取设备UDID，实际上不会安装在您的设备上。</string> =
+        <key>PayloadType</key>
+        <string>Profile Service</string>
+    </dict>
+</plist>

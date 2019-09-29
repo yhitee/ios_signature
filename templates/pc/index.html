@@ -1,0 +1,59 @@
+{% extends 'pc/basetemplate.html' %}
+{% load static %}
+{% block title %}首页{% endblock %}
+{% block style %}
+<link href="{% static 'css/pc/sup.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+<body class="body-white">
+
+{% include 'pc/topnavtemplate.html' %}
+
+<div style="width: 100%;height: 570px;overflow: hidden;background: url('{% static "images/pc/005.jpg" %}') no-repeat;background-size: 100% 100%;margin-top: 0px" >
+    <div class="sup-banner-box">
+        <div class="banner-box-top">
+            <h2>IOS超级签名</h2>
+            <p>告别掉钱烦恼<br/>
+                每台设备下载多个应用，只扣费一次</p>
+            <a href="{% url 'distribute_management' %}">立即体验</a>
+        </div>
+        <div style="height: 455px"></div>
+    </div>
+</div>
+
+<div class="sup-bottom">
+    <div class="sup-bottom-box">
+        <div class="sup-bottom-box-a">
+            <p class="sup-bottom-box-apleft">不一样的 iOS 签名<br/>不一样的优点</p>
+        </div>
+        <div class="sup-bottom-box-a ">
+            <div class="sup-bottom-box-b sup-bottom-box-c">
+                <div class="sup-bottom-box-b-top">
+                    <h4>IOS 超级签名</h4>
+                    <img src="{% static 'images/pc/002.png' %}" height="72">
+                </div>
+                <p>因机制与企业签名不同，掉签概率远低于企业签名<br>
+                    即便掉签，也只影响少数用户<br/>
+                    同一台设备下载安装该应用不限制下载次数<br/>
+                    按设备数量收费</p>
+            </div>
+        </div>
+        <div class="sup-bottom-box-a">
+            <div class="sup-bottom-box-b">
+                <div class="sup-bottom-box-b-top">
+                    <h4>IOS 企业签名</h4>
+                    <img src="{% static 'images/pc/003.png' %}" height="80" width="85">
+                </div>
+                <p>随着苹果审核越来越严格，掉签风险逐日剧增<br/>
+                    每次掉签重新获客，成本极高<br/>
+                    每次下载计算企业签名下载次数<br/>
+                    按下载次数收费</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/pc/jquery.min.js' %}"></script>
+<script src="{% static 'js/pc/bootstrap.min.js' %}"></script>
+</body>
+{% endblock %}

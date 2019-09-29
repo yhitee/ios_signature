@@ -1,0 +1,56 @@
+{% load static %}
+<nav class="navbar navbar-default navbar-fixed-top active" style="box-shadow: 0 1px 10px #ccc;">
+    <div class="container active">
+        <div class="navbar-header">
+            <a style="background: transparent;margin-top: -15px" class="navbar-brand" href="{% url 'index' %}">
+                <img height="50" src="{% static 'images/pc/001.png' %}">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse active" id="bs-example-navbar-collapse-1">
+            <ul id="main-menu" class="nav navbar-nav">
+                <li class="menu-item menu-item-level-1 ">
+                    <a href="{% url 'index' %}" target="">
+                        超级签名
+                    </a>
+                </li>
+                <li class="menu-item menu-item-level-1 index_page_gz ">
+                    <a href="{% url 'laws' %}" target="">
+                        法律法规
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" id="main-menu-user">
+                <div class="dev-aa">
+                    <a></a>
+                    {% if request.session.user_name %}
+                        <font>welcome:   </font><strong>{{ request.session.user_name }}</strong>
+                    {% else %}
+                        <font>welcome:   </font>
+                    {% endif %}
+                </div>
+
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li class="dropdown user offline" style="display: list-item;">
+                    <a class="dropdown-toggle user" data-toggle="dropdown" href="#">
+                        <img width="34" height="33"
+                             src="{% static 'images/pc/004.png' %}"
+                             class="headicon">
+                    </a>
+
+                    <ul class="dropdown-menu pull-right">
+                        {% if request.session.user_name %}
+                            <li><a href="#"><i class="fa fa-sign-in"></i> &nbsp;个人中心</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'logout' %}"><i class="fa fa-user"></i> &nbsp;注销</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> &nbsp;登录</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'register' %}"><i class="fa fa-user"></i> &nbsp;注册</a></li>
+                        {% endif %}
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

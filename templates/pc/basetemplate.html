@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %} | Giao分发</title>
+    <meta name="keywords" content="IOS超级签名,Giao分发"/>
+    <meta name="description" content="Giao app 内测分发平台,解决开发者app内测分发托管时繁杂低效的问题"/>
+    <link rel="icon" href="{% static 'images/favicon_g.png' %}" type="image/png">
+    <link rel="shortcut icon" href="{% static 'images/favicon_g.png' %}" type="image/png">
+    <link href="{% static 'css/pc/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/pc/tube.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/pc/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/pc/style.css' %}" rel="stylesheet" type="text/css">
+    {% block style %}{% endblock %}
+</head>
+
+{% block body %}
+
+{% endblock %}
+</html>

@@ -1,0 +1,224 @@
+.check_file {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: rgb(41, 142, 255);
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+}
+.check_file input {
+    margin-bottom: 10px;
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.check_file:hover {
+    background-color: rgb(41, 111, 255);
+    color: #fff;
+}
+.scroll-layer {
+    max-height: 750px;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.scroll-layer::-webkit-scrollbar {
+    width: 2px
+}
+::-webkit-scrollbar-thumb {
+    background-color: #c5ccd4;
+    -webkit-border-radius: 10px;
+    outline: 2px solid #c6ced7;
+    outline-offset: -2px;
+    border: 2px solid #c6ced7
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+    -webkit-border-radius: 0
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 9px
+}
+
+.add-app[data-aqxd] {
+    margin-top: 20px;
+    height: 100px;
+}
+
+.add-app .ivu-steps[data-aqxd] {
+    width: 450px;
+    margin: 0 auto;
+}
+
+.add-app .ivu-steps .ivu-steps-item[data-aqxd] {
+    position: relative;
+}
+
+.add-app .ivu-steps .ivu-steps-item .ivu-steps-title[data-aqxd] {
+    position: absolute;
+    left: 20px;
+    top: 40px
+}
+
+.ivu-steps {
+    font-size: 0;
+    width: 100%;
+    line-height: 1.5
+}
+
+.add-app .ivu-steps-item:first-child {
+    float: none;
+    text-align: center;
+}
+
+.add-app .ivu-steps-item:first-child .ivu-steps-main {
+    position: absolute;
+    top: 55px;
+    left: -7px;
+    font-size: 16px
+}
+
+li[data-aqxd], ul[data-aqxd] {
+    list-style: none
+}
+
+.ivu-steps .ivu-steps-tail {
+    width: 100%;
+    padding: 0 10px;
+    position: absolute;
+    left: 0;
+    top: 13px
+}
+
+.ivu-steps .ivu-steps-tail > i {
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    vertical-align: top;
+    background: #e8eaec;
+    border-radius: 1px;
+    position: relative
+}
+
+.ivu-steps .ivu-steps-tail > i:after {
+    content: "";
+    width: 0;
+    height: 100%;
+    background: #e8eaec;
+    opacity: 0;
+    position: absolute;
+    top: 0
+}
+.ivu-steps-tail {
+    top: 20px !important
+}
+.ivu-steps .ivu-steps-head {
+    background: #fff
+}
+.ivu-steps .ivu-steps-head, .ivu-steps .ivu-steps-main {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    right: 10px;
+    bottom: 9px;
+}
+.ivu-steps-item.ivu-steps-status-wait .ivu-steps-head-inner {
+    background: #dfe1e6
+}
+.ivu-steps-item.ivu-steps-status-wait .ivu-steps-content, .ivu-steps-item.ivu-steps-status-wait .ivu-steps-title {
+    color: #999
+}
+.add-app-item-info[data-aqxd] {
+    margin-top: -22px
+}
+.add-app-item-info dl[data-aqxd] {
+    width: 90%;
+    margin-left: 10%
+}
+.add-app-item-info dl dd[data-aqxd] {
+    margin-bottom: 5px;
+    line-height: 2
+}
+.add-app-item[data-aqxd] {
+    text-align: center;
+    padding-top: 20px;
+}
+.add-p[data-aqxd] {
+    margin: 17px 0 31px
+}
+.ivu-steps-item.ivu-steps-status-wait .ivu-steps-head-inner span {
+    color: #fff
+}
+
+.ivu-steps-item.ivu-steps-status-process .ivu-steps-head-inner > .ivu-steps-icon, .ivu-steps-item.ivu-steps-status-process .ivu-steps-head-inner span {
+    color: #fff
+}
+
+.add-app-item-info dl .point[data-aqxd]:before {
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+    width: 6px;
+    height: 6px;
+    margin-right: 10px;
+    background: #2a9ff6;
+    border-radius: 50%
+}
+.add-app .ivu-steps-head-inner {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    border: 0
+}
+
+.ivu-steps .ivu-steps-head-inner {
+    display: block;
+    color: #2d8cf0;
+    width: 180px;
+    /*height: 49px;*/
+    line-height: 45px;
+    text-align: center;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 10%;*/
+    font-size: 30px;
+    /*-webkit-transition: background-color .2s ease-in-out;*/
+    /*transition: background-color .2s ease-in-out;*/
+}
+.add-app .ivu-steps-item:nth-child(2) {
+    width: 200px !important
+}
+
+.add-app .ivu-steps-item:nth-child(2) .ivu-steps-main {
+    position: absolute;
+    top: 55px;
+    left: 5px;
+    font-size: 16px
+}
+
+.add-app .ivu-steps-item:nth-child(3) {
+    width: 40px !important
+}
+
+.add-app .ivu-steps-item:nth-child(3) .ivu-steps-main {
+    position: absolute;
+    top: 55px;
+    left: -7px;
+    font-size: 16px
+}
+
+.add-app .ivu-steps-item:nth-child(3) .ivu-steps-main .ivu-steps-title {
+    width: 70px
+}

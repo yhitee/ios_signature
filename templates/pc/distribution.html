@@ -1,0 +1,224 @@
+{% extends 'pc/basetemplate.html' %}
+{% load static %}
+{% block title %}分发管理{% endblock %}
+{% block style %}
+    <link href="{% static 'css/pc/modal.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pc/posted.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <body class="body-white" style="background: #c5ccd4">
+
+    {% include 'pc/topnavtemplate.html' %}
+
+    <div class="tube_left pad-left_right">
+        <!--  左侧应用 -->
+        {% include 'pc/leftnavtemplate.html' %}
+
+        <!--  右侧应用:超级签名应用 -->
+        <div class="col-sm-10 pad-left_right tube-right">
+            <div class="col-sm-12 tube-zil pad-left_right">超级签名应用</div>
+
+            <div class="col-sm-12   pad-left_right ">
+                <div class="box_card supindex-right-top" style="">
+                    <p class="supindex-right-top-text">公有池下载数量</p>
+                    <div class="supindex-right-bottom">
+                        <div class="supindex-right-bottom-a">
+                            <p class="sup-index-public-text">{{ User_Used_Devices_Count }}次</p>
+                            <p class="sup-index-public-text2">共{{ User_Buy_Devices_Count }}次</p>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" style="width: {{ Percent }}%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="box_card secou">
+                        <input type="text" name="key" value="" placeholder="搜索应用名称">
+                        <img width="20" height="20" src="{% static 'images/pc/008.png' %}">
+                    </div>
+                    <div class="secou-button">
+                        <input type="submit" name="" value="搜索">
+                    </div>
+                </form>
+
+                <div class="secou-fleft">
+                    购买设备
+                </div>
+
+                <!-- 按钮触发模态框 -->
+                <div class="secou-right" id="addApp">
+                    发布应用
+                </div>
+                <!--新增模态框-->
+                <div class="modal fade fade bs-example-modal-lg" id="myModal">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel1"
+                                    style="font-size: 16px;font-weight: 400;color: #7b7f83;">新增应用</h4>
+                            </div>
+                            <div class="modal-body" id="rootwizard">
+                                <div class="scroll-layer">
+                                    <div class="add-app" data-aqxd="">
+                                        <div class="ivu-steps ivu-steps-horizontal" data-aqxd="">
+                                            <ul>
+                                                <li data-aqxd="" class="ivu-steps-item ivu-steps-status-process">
+                                                    <div class="ivu-steps-head">
+                                                        <div class="ivu-steps-head-inner">上传发布应用</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div data-aqxd="" class="add-app-item-info">
+                                        <dl data-aqxd="">
+                                            <dd data-aqxd="">上传ipa提示：</dd>
+                                            <dd data-aqxd="" class="point">
+                                                ipa包里必须要有embedded.mobileprovision，确保权限完整；
+                                            </dd>
+                                            <dd data-aqxd="" class="point">
+                                                ipa包里确保info.plist里的bundleid与二进制执行文件中的bundleid一致；
+                                            </dd>
+                                            <dd data-aqxd="" class="point">
+                                                ipa包最好是没有被其他机构重签过的包，不然可能会导致应用闪退；
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div data-aqxd="" class="add-app-item add-btn">
+                                        <a class="check_file">
+                                            选择文件
+                                            {% csrf_token %}
+                                            <input type="file" id="file" multiple>
+                                        </a>
+                                        <!--显示上传的文件名字-->
+                                        <input type="text" id="FileCover" class="form-control"
+                                               style="width: 40%;text-align: center;margin: 0 auto" readonly="true"
+                                               value="等待上传中...(待此处出现文件名称后再点击提交)">
+                                    </div>
+
+                                    <div data-aqxd="" class="add-app-item add-p">
+                                        <p data-aqxd="">点击按钮选择应用的安装包</p>
+                                        <p data-aqxd="">(仅支持IPA文件，单个文件最大支持2GB)</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button class="btn btn-primary" id="upload">提交</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 tube-zil pad-left_right">
+                    <a href="{% url 'distribute_management' %}">
+                        <button type="button" class="btn btn-success" style="padding: 5px 42px;font-size: 16px">刷新
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm-12 tube-panel panel-default pad-left_right box_card tube-panel-bottom">
+                    <table class="table">
+                        <thead style="">
+                        <tr>
+                            <th>应用名称</th>
+                            <th>版本</th>
+                            <th>捆绑ID</th>
+                            <th>文件大小</th>
+                            <th>下载链接</th>
+                            <th>安装量</th>
+                            <th>上传时间</th>
+                            <th>上架状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for Packages in USER_PACKAGE_INFORMATION %}
+                            <tr>
+                                <td>{{ Packages.display_name }}</td>
+                                <td>{{ Packages.version }}</td>
+                                <td>{{ Packages.bundid_before }}</td>
+                                <td>{{ Packages.file_size }} M</td>
+                                <td>{{ Packages.distribution_url }}</td>
+                                <td>{{ Packages.installed_amount }}</td>
+                                <td>{{ Packages.upload_datetime }}</td>
+                                {% if User_Buy_Devices_Count == 0 %}
+                                    <td>Off</td>
+                                {% else %}
+                                    <td>On</td>
+                                {% endif %}
+                                <td>
+                                    <a href="{% url 'distribute_management' %}?distribution_url={{ Packages.distribution_url }}&delete=true"
+                                       class="btn btn-sm btn-danger">删除</a></td>
+                            </tr>
+                        {% endfor %}
+
+                        {% if message %}
+                            <h4 style="color: red">{{ message }}</h4>
+                        {% endif %}
+                        </tbody>
+                    </table>
+
+                    <div class="pagination"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'js/pc/jquery.min.js' %}"></script>
+    <script src="{% static 'js/pc/bootstrap.min.js' %}"></script>
+    <script>
+        $(function () {
+            bindClickEvent();
+        });
+
+        function bindClickEvent() {
+            $('#addApp').click(function () {
+                $('#myModal').modal('show');
+            });
+
+            $('#upload').click(function () {
+                var ipafile = $("#file")[0].files[0];
+                if (ipafile) {
+                    var IpaFormData = new FormData();
+                    var token = $("input[name='csrfmiddlewaretoken']").val();
+                    IpaFormData.append("file", ipafile);
+                    IpaFormData.append("csrfmiddlewaretoken", token);
+                    $.ajax({
+                        url: "{% url 'ipapackageupload' %}",
+                        type: 'post',
+                        data: IpaFormData,
+                        contentType: false,
+                        processData: false,
+                        dataType: 'json',
+                        success: function (data) {
+                            alert("" + data.detail_message);
+                        }
+                    });
+                } else {
+                    alert('你是不是忘了选择文件啦!')
+                }
+            });
+        }
+
+        //拼接上传的文件名字并返回到FileCover
+        $('input[id=file]').change(function () {
+            var myfile = document.getElementById('file').files;
+            var file_index = 0;
+            var file_len = myfile.length;
+            var myfilename = '';
+            while (file_index < file_len) {
+                myfilename = myfilename + myfile[file_index].name;
+                file_index = file_index + 1;
+            }
+            $('#FileCover').val(myfilename);
+        })
+    </script>
+    </body>
+{% endblock %}

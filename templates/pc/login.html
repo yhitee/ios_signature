@@ -1,0 +1,73 @@
+{% extends 'pc/basetemplate.html' %}
+{% load static %}
+{% block title %}登录{% endblock %}
+{% block style %}
+<link href="{% static 'css/pc/login.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+<body style="background: #bbbbbb">
+<div class="login-box">
+    <div class="login-box-bottom">
+        <div class="login-box-bottom-left">
+            <div class="login-box-logo">
+                <img width="100%" src="{% static 'images/pc/001.png' %}" onclick="window.location.href='{% url 'index' %}'">
+            </div>
+            <img width="100%" src="{% static 'images/pc/006.png' %}">
+        </div>
+        <div class="login-box-bottom-right">
+            <h2 class="text-center user-login">用户登录</h2>
+
+            <form class="js-ajax-form" action="" method="post">
+                {% csrf_token %}
+                <div class="form-group form-group-ou">
+                    {{ login_form.username.label_tag }}
+                    {{ login_form.username }}
+                </div>
+                <div class="form-group form-group-ou">
+                    {{ login_form.password.label_tag }}
+                    {{ login_form.password }}
+                </div>
+                <div class="form-group form-group-ou">
+                    {{ login_form.captcha.label_tag }}
+                    {{ login_form.captcha }}
+                </div>
+
+                <div class="form-group">
+                    <div class="register-left">
+                        <a href="{% url 'register' %}">免费注册</a>
+                    </div>
+                    <div class="findpassword-right">
+                        <a href="">忘记密码 ？</a>
+                    </div>
+
+                </div>
+                <div class="form-group">&nbsp;</div>
+                <div class="form-group" style="margin-top:50px;">
+                    <input type="hidden" name="redirect" value="">
+                    <button class="btn btn-primary btn-block js-ajax-submit" type="submit" style="width:418px; height:56px; background:rgba(21,235,191,1);border-radius:10px;border: none;font-size: 22px;">
+                        登录
+                    </button>
+                </div>
+                {% if login_form.captcha.errors %}
+                    <div class="alert alert-warning" style="width: 197px;height: 50px">{{ login_form.captcha.errors }}</div>
+                {% elif message %}
+                    <div class="alert alert-warning" style="width: 197px;height: 50px">{{ message }}</div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/pc/jquery.min.js' %}"></script>
+<script src="{% static 'js/pc/bootstrap.min.js' %}"></script>
+<script>
+    // 验证码点击刷新
+    $('.captcha').click(function () {
+    $.getJSON("/captcha/refresh/", function (result) {
+        $('.captcha').attr('src', result['image_url']);
+        $('#id_captcha_0').val(result['key']);
+        });
+    });
+</script>
+</body>
+{% endblock %}
